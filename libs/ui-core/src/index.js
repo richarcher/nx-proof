@@ -3,3 +3,4 @@ export {
   buttonSize,
   buttonVariant,
 } from './lib/Button'
+export { default as FormErrorMessage } from './lib/FormErrorMessage'
