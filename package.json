@@ -2,13 +2,11 @@
   "name": "@org2/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {
-  },
+  "scripts": {},
   "private": true,
-  "dependencies": {
-  },
   "devDependencies": {
-    "nx": "16.6.0",
-    "@nx/workspace": "16.6.0"
+    "@nx/react": "^16.6.0",
+    "@nx/workspace": "16.6.0",
+    "nx": "16.6.0"
   }
 }
