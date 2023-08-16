@@ -5,6 +5,7 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
+    "@babel/core": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
     "@emotion/babel-plugin": "11.11.0",
     "@nx/eslint-plugin": "16.7.0",
@@ -55,4 +56,3 @@
     "tslib": "^2.3.0"
   }
 }
-
