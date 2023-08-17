@@ -1,29 +1,29 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { cx } from '@emotion/css'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { cx } from '@emotion/css';
 
-import addDays from 'date-fns/add_days'
-import addMonths from 'date-fns/add_months'
-import addWeeks from 'date-fns/add_weeks'
-import differenceInCalendarWeeks from 'date-fns/difference_in_calendar_weeks'
-import endOfDay from 'date-fns/end_of_day'
-import format from 'date-fns/format'
-import getDay from 'date-fns/get_day'
-import isAfter from 'date-fns/is_after'
-import isBefore from 'date-fns/is_before'
-import isEqual from 'date-fns/is_equal'
-import isSameMonth from 'date-fns/is_same_month'
+import addDays from 'date-fns/add_days';
+import addMonths from 'date-fns/add_months';
+import addWeeks from 'date-fns/add_weeks';
+import differenceInCalendarWeeks from 'date-fns/difference_in_calendar_weeks';
+import endOfDay from 'date-fns/end_of_day';
+import format from 'date-fns/format';
+import getDay from 'date-fns/get_day';
+import isAfter from 'date-fns/is_after';
+import isBefore from 'date-fns/is_before';
+import isEqual from 'date-fns/is_equal';
+import isSameMonth from 'date-fns/is_same_month';
 // import isValid from 'date-fns/is_valid'
-import startOfDay from 'date-fns/start_of_day'
-import startOfMonth from 'date-fns/start_of_month'
+import startOfDay from 'date-fns/start_of_day';
+import startOfMonth from 'date-fns/start_of_month';
 
-import { colors } from '@offerzen/design-tokens'
-import { Button, FormHelpText, FormErrorMessage } from '@offerzen/ui-core'
+import { colors } from '@offerzen/react/design-tokens';
+import { Button, FormHelpText, FormErrorMessage } from '@offerzen/ui-core';
 // import Button from '../Button'
 // import FormErrorMessage from '../FormErrorMessage'
 // import FormHelpText from '../FormHelpText'
 // import Icon from '../Icon'
-import styles, { wrapperTheme, labelTheme, dayTheme } from './styles'
+import styles, { wrapperTheme, labelTheme, dayTheme } from './styles';
 
 // import chevronLeft from '../Icon/icons/chevron-left'
 // import chevronRight from '../Icon/icons/chevron-right'
@@ -34,28 +34,28 @@ class DatePicker extends Component {
     open: false,
     activeMonth: null,
     activeDate: null,
-  }
+  };
 
   componentDidMount() {
-    const { input, minDate, maxDate, onChange, ...props } = this.props
-    const value = input.value || props.value
-    let activeDate = value ? new Date(value) : new Date()
+    const { input, minDate, maxDate, onChange, ...props } = this.props;
+    const value = input.value || props.value;
+    let activeDate = value ? new Date(value) : new Date();
 
     if (minDate || maxDate) {
       // If supplied date is out of range, adjust and push the change
-      activeDate = this.adjustDateToRange(activeDate)
+      activeDate = this.adjustDateToRange(activeDate);
 
       // Make sure to push the new initial date, if there was any to begin with
-      const handler = input.onChange || onChange
-      if (value && handler) handler(activeDate)
+      const handler = input.onChange || onChange;
+      if (value && handler) handler(activeDate);
     }
 
-    this.setState({ activeMonth: activeDate, activeDate })
+    this.setState({ activeMonth: activeDate, activeDate });
   }
 
   adjustDateToRange = (date) => {
-    const { minDate, maxDate } = this.props
-    let newDate = date
+    const { minDate, maxDate } = this.props;
+    let newDate = date;
 
     // if (minDate && isBefore(date, minDate)) {
     //   newDate = minDate
@@ -65,76 +65,114 @@ class DatePicker extends Component {
     //   newDate = maxDate
     // }
 
-    return newDate
+    return newDate;
   };
 
   selectDate = (date) => {
-    const { input, onChange } = this.props
+    const { input, onChange } = this.props;
 
-    const newDate = this.adjustDateToRange(date)
-    this.setState({ activeDate: newDate, activeMonth: newDate })
+    const newDate = this.adjustDateToRange(date);
+    this.setState({ activeDate: newDate, activeMonth: newDate });
 
-    const handler = input.onChange || onChange
-    if (handler) handler(newDate)
-  }
+    const handler = input.onChange || onChange;
+    if (handler) handler(newDate);
+  };
 
   closePicker = (ev) => {
-    this.setState({ open: false })
+    this.setState({ open: false });
 
-    const handler = this.props.input.onBlur || this.props.onBlur
-    if (handler) handler(ev)
-  }
+    const handler = this.props.input.onBlur || this.props.onBlur;
+    if (handler) handler(ev);
+  };
 
   render() {
-    const { open, activeMonth, activeDate } = this.state
-    const { meta, input, theme, className, helpText, tabIndex, readOnly, ...props } = this.props
+    const { open, activeMonth, activeDate } = this.state;
+    const {
+      meta,
+      input,
+      theme,
+      className,
+      helpText,
+      tabIndex,
+      readOnly,
+      ...props
+    } = this.props;
 
-    const name = input.name || props.name
-    const errored = meta.touched && meta.error
+    const name = input.name || props.name;
+    const errored = meta.touched && meta.error;
 
-    const value = input.value || props.value
+    const value = input.value || props.value;
     // const formatter = props.formatter || format
     // const formattedValue = isValid(new Date(value)) ? formatter(value, 'D MMMM YYYY') : ''
 
-    const firstOfMonth = startOfMonth(activeMonth)
-    const prevMonthDays = getDay(firstOfMonth)
-    const firstDayInCalendar = addDays(firstOfMonth, -prevMonthDays)
+    const firstOfMonth = startOfMonth(activeMonth);
+    const prevMonthDays = getDay(firstOfMonth);
+    const firstDayInCalendar = addDays(firstOfMonth, -prevMonthDays);
 
-    const weeks = new Array(differenceInCalendarWeeks(addMonths(firstOfMonth, 1), firstOfMonth) + 1).fill(new Array(7).fill(0))
-    const calendarWeeks = weeks.map((week, weekIndex) => week.map((_, dayInWeek) => {
-      const date = addWeeks(addDays(firstDayInCalendar, dayInWeek), weekIndex)
-      const beforeMinDate = props.minDate ? isBefore(startOfDay(date), startOfDay(props.minDate)) : false
-      const afterMaxDate = props.maxDate ? isAfter(endOfDay(date), endOfDay(props.maxDate)) : false
+    const weeks = new Array(
+      differenceInCalendarWeeks(addMonths(firstOfMonth, 1), firstOfMonth) + 1
+    ).fill(new Array(7).fill(0));
+    const calendarWeeks = weeks.map((week, weekIndex) =>
+      week.map((_, dayInWeek) => {
+        const date = addWeeks(
+          addDays(firstDayInCalendar, dayInWeek),
+          weekIndex
+        );
+        const beforeMinDate = props.minDate
+          ? isBefore(startOfDay(date), startOfDay(props.minDate))
+          : false;
+        const afterMaxDate = props.maxDate
+          ? isAfter(endOfDay(date), endOfDay(props.maxDate))
+          : false;
 
-      return {
-        day: format(date, 'D'),
-        selected: isEqual(startOfDay(activeDate), startOfDay(date)) && !!value,
-        inMonth: isSameMonth(activeMonth, date),
-        disabled: beforeMinDate || afterMaxDate,
-        ...(!beforeMinDate && !afterMaxDate && {
-          onClick: () => {
-            this.selectDate(date)
-          },
-        }),
-      }
-    })
-    )
+        return {
+          day: format(date, 'D'),
+          selected:
+            isEqual(startOfDay(activeDate), startOfDay(date)) && !!value,
+          inMonth: isSameMonth(activeMonth, date),
+          disabled: beforeMinDate || afterMaxDate,
+          ...(!beforeMinDate &&
+            !afterMaxDate && {
+              onClick: () => {
+                this.selectDate(date);
+              },
+            }),
+        };
+      })
+    );
 
     return (
-      <div className={cx(styles.wrapper, className, wrapperTheme(theme), errored && styles.wrapperError)} >
+      <div
+        className={cx(
+          styles.wrapper,
+          className,
+          wrapperTheme(theme),
+          errored && styles.wrapperError
+        )}
+      >
         {/* Render body first so the "input" appears on top */}
         {open && (
           <>
             <div className={styles.body} tabIndex="-1">
               <div className={styles.calendarHeader}>
-                <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, -1) })} >
+                <div
+                  className={styles.calendarNavigation}
+                  onClick={() =>
+                    this.setState({ activeMonth: addMonths(activeMonth, -1) })
+                  }
+                >
                   {/* <Icon icon={chevronLeft} size={20} color={colors.grayChateau} /> */}
                   ◀
                 </div>
 
                 <strong>{format(activeMonth, 'MMMM YYYY')}</strong>
 
-                <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, 1) })} >
+                <div
+                  className={styles.calendarNavigation}
+                  onClick={() =>
+                    this.setState({ activeMonth: addMonths(activeMonth, 1) })
+                  }
+                >
                   {/* <Icon icon={chevronRight} size={20} color={colors.grayChateau} /> */}
                   ▶
                 </div>
@@ -159,27 +197,47 @@ class DatePicker extends Component {
                       <tr key={rowIndex}>
                         {row.map((cell, cellIndex) => {
                           return (
-                            <td key={cellIndex} className={cx(styles.day, cell.disabled && styles.dayDisabled, !cell.inMonth && styles.dayOut)} >
+                            <td
+                              key={cellIndex}
+                              className={cx(
+                                styles.day,
+                                cell.disabled && styles.dayDisabled,
+                                !cell.inMonth && styles.dayOut
+                              )}
+                            >
                               <span
-                                className={cx(styles.dayWrapper,
+                                className={cx(
+                                  styles.dayWrapper,
                                   !cell.inMonth && styles.dayWrapperOut,
-                                  cell.selected && dayTheme(theme, cell.inMonth))}
+                                  cell.selected && dayTheme(theme, cell.inMonth)
+                                )}
                                 onClick={cell.onClick}
                               >
                                 {cell.day}
                               </span>
                             </td>
-                          )
+                          );
                         })}
                       </tr>
-                    )
+                    );
                   })}
                 </tbody>
               </table>
 
               <div className={styles.footer}>
-                <Button theme={theme} size="small" label="Today" variant="outlined" onClick={() => this.selectDate(new Date())} />
-                <Button theme={theme} size="small" label="Done" onClick={() => this.closePicker()} />
+                <Button
+                  theme={theme}
+                  size="small"
+                  label="Today"
+                  variant="outlined"
+                  onClick={() => this.selectDate(new Date())}
+                />
+                <Button
+                  theme={theme}
+                  size="small"
+                  label="Done"
+                  onClick={() => this.closePicker()}
+                />
               </div>
             </div>
 
@@ -188,19 +246,24 @@ class DatePicker extends Component {
         )}
 
         <div
-          className={cx(styles.label, labelTheme(theme), open && styles.openLabel, errored && styles.errorLabel)}
+          className={cx(
+            styles.label,
+            labelTheme(theme),
+            open && styles.openLabel,
+            errored && styles.errorLabel
+          )}
           tabIndex={tabIndex}
           readOnly={readOnly}
           onClick={(ev) => {
             if (open) {
-              this.closePicker()
-              return
+              this.closePicker();
+              return;
             }
 
-            this.setState({ open: true })
+            this.setState({ open: true });
 
-            const focusHandler = input.onFocus || props.onFocus
-            if (focusHandler) focusHandler(ev)
+            const focusHandler = input.onFocus || props.onFocus;
+            if (focusHandler) focusHandler(ev);
           }}
         >
           <input
@@ -226,7 +289,7 @@ class DatePicker extends Component {
         {helpText && !errored && <FormHelpText text={helpText} />}
         {errored && <FormErrorMessage text={meta.error} />}
       </div>
-    )
+    );
   }
 }
 
@@ -243,16 +306,24 @@ DatePicker.propTypes = {
     name: PropTypes.string,
   }),
   name: PropTypes.string,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   placeholder: PropTypes.string,
   tabIndex: PropTypes.string,
   readOnly: PropTypes.bool,
   helpText: PropTypes.string,
   formatter: PropTypes.func,
-  theme: PropTypes.oneOf(['', 'primary', 'secondary', 'success', 'warning', 'error', 'legacy', 'dark', 'tertiary', 'info',]),
+  theme: PropTypes.oneOf([
+    '',
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'error',
+    'legacy',
+    'dark',
+    'tertiary',
+    'info',
+  ]),
   className: PropTypes.string,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
@@ -267,7 +338,7 @@ DatePicker.propTypes = {
     PropTypes.number,
     PropTypes.object,
   ]),
-}
+};
 
 DatePicker.defaultProps = {
   meta: {},
@@ -276,6 +347,6 @@ DatePicker.defaultProps = {
   value: '',
   tabIndex: '0',
   theme: 'primary',
-}
+};
 
-export default DatePicker
+export default DatePicker;

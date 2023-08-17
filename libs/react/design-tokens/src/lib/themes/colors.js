@@ -67,6 +67,6 @@ const colors = {
   bostonBlue: '#30A4AF',
   iceberg: '#D8F2F4',
   easternBlue: '#238F99',
-}
+};
 
-export default colors
+export default colors;

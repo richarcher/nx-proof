@@ -1,5 +1,11 @@
-import { css } from '@emotion/css'
-import { spacing, fontSize, fontWeight, fontFamily, colors } from '@offerzen/design-tokens'
+import { css } from '@emotion/css';
+import {
+  spacing,
+  fontSize,
+  fontWeight,
+  fontFamily,
+  colors,
+} from '@offerzen/react/design-tokens';
 
 const styles = {
   wrapper: css({
@@ -11,6 +17,6 @@ const styles = {
     color: colors.jumbo,
     marginTop: spacing.extraSmall,
   }),
-}
+};
 
-export default styles
+export default styles;

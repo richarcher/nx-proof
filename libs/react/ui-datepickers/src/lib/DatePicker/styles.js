@@ -10,7 +10,7 @@ import {
   shorthandHelper,
   spacing,
   zIndex,
-} from '@offerzen/design-tokens';
+} from '@offerzen/react/design-tokens';
 
 const styles = {
   wrapper: css({

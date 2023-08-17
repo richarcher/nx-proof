@@ -1,5 +1,15 @@
-import { css } from '@emotion/css'
-import { borderRadius, spacing, fontFamily, fontSize, fontWeight, shorthandHelper, getThemeColors, colors, hexToRgba } from '@offerzen/design-tokens'
+import { css } from '@emotion/css';
+import {
+  borderRadius,
+  spacing,
+  fontFamily,
+  fontSize,
+  fontWeight,
+  shorthandHelper,
+  getThemeColors,
+  colors,
+  hexToRgba,
+} from '@offerzen/react/design-tokens';
 
 const styles = {
   button: css({
@@ -27,12 +37,12 @@ const styles = {
       pointerEvents: 'none',
     },
   }),
-}
+};
 
-export default styles
+export default styles;
 
 export const buttonVariant = (variant, theme) => {
-  const themed = getThemeColors(theme)
+  const themed = getThemeColors(theme);
 
   // Light theme is special in buttons
   if (theme === 'light') {
@@ -55,7 +65,7 @@ export const buttonVariant = (variant, theme) => {
           '&:active': {
             backgroundColor: hexToRgba(themed.light, 0.6),
           },
-        })
+        });
 
       case 'dashed':
         return css({
@@ -76,7 +86,7 @@ export const buttonVariant = (variant, theme) => {
           '&:active': {
             backgroundColor: hexToRgba(themed.light, 0.6),
           },
-        })
+        });
 
       default:
         return css({
@@ -95,7 +105,7 @@ export const buttonVariant = (variant, theme) => {
           '&:active': {
             backgroundColor: themed.medium,
           },
-        })
+        });
     }
   }
 
@@ -118,7 +128,7 @@ export const buttonVariant = (variant, theme) => {
         '&:active': {
           backgroundColor: hexToRgba(themed.base, 0.25),
         },
-      })
+      });
 
     case 'dashed':
       return css({
@@ -139,7 +149,7 @@ export const buttonVariant = (variant, theme) => {
         '&:active': {
           backgroundColor: hexToRgba(themed.base, 0.25),
         },
-      })
+      });
 
     default:
       return css({
@@ -157,30 +167,30 @@ export const buttonVariant = (variant, theme) => {
         '&:active': {
           backgroundColor: themed.dark,
         },
-      })
+      });
   }
-}
+};
 
-export const buttonSize = size => {
+export const buttonSize = (size) => {
   switch (size) {
     case 'small':
       return css({
         height: 30,
         fontSize: fontSize.small,
         padding: shorthandHelper([spacing.small, spacing.default]),
-      })
+      });
 
     case 'medium':
       return css({
         height: 40,
         lineHeight: 1,
         padding: shorthandHelper([spacing.small, spacing.medium]),
-      })
+      });
 
     default:
       return css({
         height: 35,
         padding: shorthandHelper([spacing.small, spacing.default]),
-      })
+      });
   }
-}
+};

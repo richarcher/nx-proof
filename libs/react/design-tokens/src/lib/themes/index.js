@@ -1,6 +1,6 @@
-import colors from './colors'
+import colors from './colors';
 
-const getThemeColors = theme => {
+const getThemeColors = (theme) => {
   switch (theme) {
     case 'secondary':
       return {
@@ -8,7 +8,7 @@ const getThemeColors = theme => {
         medium: colors.wisteria,
         light: colors.whiteLilac,
         dark: colors.affair,
-      }
+      };
 
     case 'success':
       return {
@@ -16,7 +16,7 @@ const getThemeColors = theme => {
         medium: colors.eucalyptus,
         light: colors.harp,
         dark: colors.seaGreen,
-      }
+      };
 
     case 'warning':
       return {
@@ -24,7 +24,7 @@ const getThemeColors = theme => {
         medium: colors.burntSienna,
         light: colors.provincialPink,
         dark: colors.redDamask,
-      }
+      };
 
     case 'error':
       return {
@@ -32,7 +32,7 @@ const getThemeColors = theme => {
         medium: colors.chestnutRose,
         light: colors.linen,
         dark: colors.mojo,
-      }
+      };
 
     case 'legacy':
       return {
@@ -40,7 +40,7 @@ const getThemeColors = theme => {
         medium: colors.pelorous,
         light: colors.whiteIce,
         dark: colors.jellyBean,
-      }
+      };
 
     case 'light':
       return {
@@ -48,7 +48,7 @@ const getThemeColors = theme => {
         medium: colors.geyser,
         light: colors.mystic,
         dark: colors.scorpion,
-      }
+      };
 
     case 'dark':
       return {
@@ -56,7 +56,7 @@ const getThemeColors = theme => {
         medium: colors.blueZodiac,
         light: colors.mischka,
         dark: colors.blackPearl,
-      }
+      };
 
     case 'tertiary':
       return {
@@ -64,7 +64,7 @@ const getThemeColors = theme => {
         medium: colors.cranberry,
         light: colors.wispPink,
         dark: colors.cabaret,
-      }
+      };
 
     case 'info':
       return {
@@ -72,7 +72,7 @@ const getThemeColors = theme => {
         medium: colors.bostonBlue,
         light: colors.iceberg,
         dark: colors.easternBlue,
-      }
+      };
 
     default:
       return {
@@ -80,22 +80,20 @@ const getThemeColors = theme => {
         medium: colors.havelockBlue,
         light: colors.hawkesBlue,
         dark: colors.mariner,
-      }
+      };
   }
-}
+};
 
-export default getThemeColors
+export default getThemeColors;
 
-export {
-  colors,
-}
+export { colors };
 
-export const getSkeletonColors = theme => {
+export const getSkeletonColors = (theme) => {
   switch (theme) {
     case 'dark':
-      return colors.geyser
+      return colors.geyser;
 
     default:
-      return colors.mystic
+      return colors.mystic;
   }
-}
+};
