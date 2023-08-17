@@ -18,7 +18,7 @@
       "@offerzen/react/design-tokens": [
         "libs/react/design-tokens/src/index.js"
       ],
-      "@offerzen/ui-core": ["libs/ui-core/src/index.js"],
+      "@offerzen/react/ui-core": ["libs/react/ui-core/src/index.js"],
       "@org2/react/ui-datepickers": ["libs/react/ui-datepickers/src/index.js"]
     }
   },

@@ -14,52 +14,52 @@ export default {
   },
   argTypes: {
     onClick: { action: true },
-  }
-}
+  },
+};
 
-export const Primary = {}
+export const Primary = {};
 
 export const AltThemedButton = {
   args: {
-    theme: 'secondary'
+    theme: 'secondary',
   },
-}
+};
 
 export const SmallButton = {
   args: {
-    size: 'small'
+    size: 'small',
   },
-}
+};
 
 export const VariantDashedButton = {
   args: {
-    variant: 'dashed'
+    variant: 'dashed',
   },
-}
+};
 
 export const VariantOutlineButton = {
   args: {
-    variant: 'outlined'
+    variant: 'outlined',
   },
-}
+};
 
 export const DisabledButton = {
   args: {
-    disabled: true
+    disabled: true,
   },
-}
+};
 
 Primary.play = async ({ args, canvasElement, step }) => {
-  const canvas = within(canvasElement)
-  expect(canvas.getByText(/Click me!/gi)).toBeTruthy()
+  const canvas = within(canvasElement);
+  expect(canvas.getByText(/Click me!/gi)).toBeTruthy();
 
   await step('Click button', async () => {
-    await userEvent.click(canvas.getByRole('button'))
-    expect(args.onClick).toHaveBeenCalled()
-  })
-}
+    await userEvent.click(canvas.getByRole('button'));
+    expect(args.onClick).toHaveBeenCalled();
+  });
+};
 
 DisabledButton.play = async ({ args, canvasElement, step }) => {
-  const canvas = within(canvasElement)
-  expect(canvas.getByText(/Click me!/gi)).toHaveAttribute('disabled')
-}
+  const canvas = within(canvasElement);
+  expect(canvas.getByText(/Click me!/gi)).toHaveAttribute('disabled');
+};

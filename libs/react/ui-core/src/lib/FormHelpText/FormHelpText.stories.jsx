@@ -4,9 +4,8 @@ export default {
   component: FormHelpText,
   title: 'FormHelpText',
   args: {
-    text: 'Form helper text looks like this'
+    text: 'Form helper text looks like this',
   },
-}
+};
 
-export const Primary = {}
-
+export const Primary = {};

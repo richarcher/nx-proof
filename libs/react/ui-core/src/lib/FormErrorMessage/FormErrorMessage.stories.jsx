@@ -4,9 +4,8 @@ export default {
   component: FormErrorMessage,
   title: 'FormErrorMessage',
   args: {
-    text: 'Form error messages looks like this'
+    text: 'Form error messages looks like this',
   },
-}
+};
 
-export const Primary = {}
-
+export const Primary = {};
