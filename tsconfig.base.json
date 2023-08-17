@@ -23,7 +23,8 @@
       "@offerzen/react-ui-core": ["libs/react/ui-core/src/index.js"],
       "@offerzen/react-ui-datepickers": [
         "libs/react/ui-datepickers/src/index.js"
-      ]
+      ],
+      "@offerzen/storybook-host": ["libs/storybook-host/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
