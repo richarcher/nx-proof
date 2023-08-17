@@ -12,7 +12,7 @@ const CountryLegend = ({ countryCode, countryName }) => (
 
 CountryLegend.propTypes = {
   countryCode: PropTypes.string,
-  countryName: PropTypes.string.isRequired,
+  countryName: PropTypes.string,
 }
 
 export default CountryLegend
