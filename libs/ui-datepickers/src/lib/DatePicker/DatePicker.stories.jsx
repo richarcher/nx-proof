@@ -1,4 +1,4 @@
-import componentName from './DatePicker';
+import DatePicker from './DatePicker';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
@@ -12,7 +12,7 @@ export const Primary = {
   args: {},
 };
 
-export const Heading: Story = {
+export const Heading = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to DatePicker!/gi)).toBeTruthy();
