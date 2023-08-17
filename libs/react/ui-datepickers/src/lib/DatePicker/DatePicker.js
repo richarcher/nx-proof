@@ -13,25 +13,16 @@ import isAfter from 'date-fns/is_after';
 import isBefore from 'date-fns/is_before';
 import isEqual from 'date-fns/is_equal';
 import isSameMonth from 'date-fns/is_same_month';
-// import isValid from 'date-fns/is_valid'
+import isValid from 'date-fns/is_valid'
 import startOfDay from 'date-fns/start_of_day';
 import startOfMonth from 'date-fns/start_of_month';
 
-import { colors } from '@offerzen/core-design-tokens';
 import {
   Button,
   FormHelpText,
   FormErrorMessage,
 } from '@offerzen/react-ui-core';
-// import Button from '../Button'
-// import FormErrorMessage from '../FormErrorMessage'
-// import FormHelpText from '../FormHelpText'
-// import Icon from '../Icon'
 import styles, { wrapperTheme, labelTheme, dayTheme } from './styles';
-
-// import chevronLeft from '../Icon/icons/chevron-left'
-// import chevronRight from '../Icon/icons/chevron-right'
-// import calendar from '../Icon/icons/calendar'
 
 class DatePicker extends Component {
   state = {
@@ -61,13 +52,13 @@ class DatePicker extends Component {
     const { minDate, maxDate } = this.props;
     let newDate = date;
 
-    // if (minDate && isBefore(date, minDate)) {
-    //   newDate = minDate
-    // }
+    if (minDate && isBefore(date, minDate)) {
+      newDate = minDate
+    }
 
-    // if (maxDate && isAfter(date, maxDate)) {
-    //   newDate = maxDate
-    // }
+    if (maxDate && isAfter(date, maxDate)) {
+      newDate = maxDate
+    }
 
     return newDate;
   };
@@ -106,8 +97,8 @@ class DatePicker extends Component {
     const errored = meta.touched && meta.error;
 
     const value = input.value || props.value;
-    // const formatter = props.formatter || format
-    // const formattedValue = isValid(new Date(value)) ? formatter(value, 'D MMMM YYYY') : ''
+    const formatter = props.formatter || format
+    const formattedValue = isValid(new Date(value)) ? formatter(value, 'D MMMM YYYY') : ''
 
     const firstOfMonth = startOfMonth(activeMonth);
     const prevMonthDays = getDay(firstOfMonth);
@@ -159,27 +150,27 @@ class DatePicker extends Component {
           <>
             <div className={styles.body} tabIndex="-1">
               <div className={styles.calendarHeader}>
-                <div
+                <button
+                  type='button'
                   className={styles.calendarNavigation}
                   onClick={() =>
                     this.setState({ activeMonth: addMonths(activeMonth, -1) })
                   }
                 >
-                  {/* <Icon icon={chevronLeft} size={20} color={colors.grayChateau} /> */}
                   ◀
-                </div>
+                </button>
 
                 <strong>{format(activeMonth, 'MMMM YYYY')}</strong>
 
-                <div
+                <button
+                  type='button'
                   className={styles.calendarNavigation}
                   onClick={() =>
                     this.setState({ activeMonth: addMonths(activeMonth, 1) })
                   }
                 >
-                  {/* <Icon icon={chevronRight} size={20} color={colors.grayChateau} /> */}
                   ▶
-                </div>
+                </button>
               </div>
 
               <table className={styles.calendar}>
@@ -279,14 +270,13 @@ class DatePicker extends Component {
             // eslint-disable-next-line no-return-assign
             ref={(el) => (this.input = el)}
             name={name}
-            // value={formattedValue}
+            value={formattedValue}
             placeholder={props.placeholder}
             onBlur={(ev) => ev.preventDefault()}
           />
 
           <div className={styles.icon}>
-            {/* <Icon icon={calendar} size={18} color={errored ? colors.mandy : colors.geyser} /> */}
-            📅
+            <span role="img" aria-label="Calendar icon">📅</span>
           </div>
         </div>
 

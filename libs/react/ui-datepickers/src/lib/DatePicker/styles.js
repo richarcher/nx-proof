@@ -134,6 +134,11 @@ const styles = {
     '&:focus': {
       outline: 'none',
     },
+
+    button: {
+      backgroundColor: 'none',
+      border: 'none',
+    }
   }),
 
   calendarHeader: css({
