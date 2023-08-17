@@ -1,5 +1,16 @@
-import { css } from '@emotion/css'
-import { borderRadius, colors, fontFamily, fontSize, fontWeight, getThemeColors, hexToRgba, shorthandHelper, spacing, zIndex } from '@offerzen/design-tokens'
+import { css } from '@emotion/css';
+import {
+  borderRadius,
+  colors,
+  fontFamily,
+  fontSize,
+  fontWeight,
+  getThemeColors,
+  hexToRgba,
+  shorthandHelper,
+  spacing,
+  zIndex,
+} from '@offerzen/design-tokens';
 
 const styles = {
   wrapper: css({
@@ -65,7 +76,12 @@ const styles = {
     fontFamily: fontFamily.body,
     fontSize: fontSize.default,
     lineHeight: 1.2,
-    padding: shorthandHelper([spacing.small, 42, spacing.small, spacing.default]),
+    padding: shorthandHelper([
+      spacing.small,
+      42,
+      spacing.small,
+      spacing.default,
+    ]),
     appearance: 'none',
     border: 'none',
     borderRadius: borderRadius.default,
@@ -210,32 +226,32 @@ const styles = {
       marginLeft: spacing.small,
     },
   }),
-}
+};
 
-export default styles
+export default styles;
 
-export const wrapperTheme = theme => {
-  const themed = getThemeColors(theme)
+export const wrapperTheme = (theme) => {
+  const themed = getThemeColors(theme);
   return css({
     '&:focus-within > div:last-child': {
       borderColor: themed.base,
       boxShadow: `0 0 0 2px ${hexToRgba(themed.base, 0.25)}`,
     },
-  })
-}
+  });
+};
 
-export const labelTheme = theme => {
-  const themed = getThemeColors(theme)
+export const labelTheme = (theme) => {
+  const themed = getThemeColors(theme);
   return css({
     '&:focus': {
       borderColor: themed.base,
       boxShadow: `0 0 0 2px ${hexToRgba(themed.base, 0.25)}`,
     },
-  })
-}
+  });
+};
 
 export const dayTheme = (theme, inMonth) => {
-  const themed = getThemeColors(theme)
+  const themed = getThemeColors(theme);
   return css({
     backgroundColor: hexToRgba(themed.base, inMonth ? 1 : 0.5),
     color: colors.white,
@@ -244,5 +260,5 @@ export const dayTheme = (theme, inMonth) => {
     '&:hover': {
       backgroundColor: hexToRgba(themed.base, inMonth ? 1 : 0.5),
     },
-  })
-}
+  });
+};

@@ -53,7 +53,7 @@ class DatePicker extends Component {
     this.setState({ activeMonth: activeDate, activeDate })
   }
 
-  adjustDateToRange = date => {
+  adjustDateToRange = (date) => {
     const { minDate, maxDate } = this.props
     let newDate = date
 
@@ -66,9 +66,9 @@ class DatePicker extends Component {
     // }
 
     return newDate
-  }
+  };
 
-  selectDate = date => {
+  selectDate = (date) => {
     const { input, onChange } = this.props
 
     const newDate = this.adjustDateToRange(date)
@@ -78,7 +78,7 @@ class DatePicker extends Component {
     if (handler) handler(newDate)
   }
 
-  closePicker = ev => {
+  closePicker = (ev) => {
     this.setState({ open: false })
 
     const handler = this.props.input.onBlur || this.props.onBlur
@@ -111,29 +111,30 @@ class DatePicker extends Component {
         selected: isEqual(startOfDay(activeDate), startOfDay(date)) && !!value,
         inMonth: isSameMonth(activeMonth, date),
         disabled: beforeMinDate || afterMaxDate,
-        ...(!beforeMinDate && !afterMaxDate) && {
+        ...(!beforeMinDate && !afterMaxDate && {
           onClick: () => {
             this.selectDate(date)
           },
-        },
+        }),
       }
-    }))
+    })
+    )
 
     return (
-      <div className={cx(styles.wrapper, className, wrapperTheme(theme), errored && styles.wrapperError)}>
+      <div className={cx(styles.wrapper, className, wrapperTheme(theme), errored && styles.wrapperError)} >
         {/* Render body first so the "input" appears on top */}
         {open && (
           <>
             <div className={styles.body} tabIndex="-1">
               <div className={styles.calendarHeader}>
-                <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, -1) })}>
+                <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, -1) })} >
                   {/* <Icon icon={chevronLeft} size={20} color={colors.grayChateau} /> */}
                   ◀
                 </div>
 
                 <strong>{format(activeMonth, 'MMMM YYYY')}</strong>
 
-                <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, 1) })}>
+                <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, 1) })} >
                   {/* <Icon icon={chevronRight} size={20} color={colors.grayChateau} /> */}
                   ▶
                 </div>
@@ -158,7 +159,7 @@ class DatePicker extends Component {
                       <tr key={rowIndex}>
                         {row.map((cell, cellIndex) => {
                           return (
-                            <td key={cellIndex} className={cx(styles.day, cell.disabled && styles.dayDisabled, !cell.inMonth && styles.dayOut)}>
+                            <td key={cellIndex} className={cx(styles.day, cell.disabled && styles.dayDisabled, !cell.inMonth && styles.dayOut)} >
                               <span
                                 className={cx(styles.dayWrapper,
                                   !cell.inMonth && styles.dayWrapperOut,
@@ -190,7 +191,7 @@ class DatePicker extends Component {
           className={cx(styles.label, labelTheme(theme), open && styles.openLabel, errored && styles.errorLabel)}
           tabIndex={tabIndex}
           readOnly={readOnly}
-          onClick={ev => {
+          onClick={(ev) => {
             if (open) {
               this.closePicker()
               return
@@ -209,11 +210,11 @@ class DatePicker extends Component {
             tabIndex="-1"
             readOnly
             // eslint-disable-next-line no-return-assign
-            ref={el => this.input = el}
+            ref={(el) => (this.input = el)}
             name={name}
             // value={formattedValue}
             placeholder={props.placeholder}
-            onBlur={ev => ev.preventDefault()}
+            onBlur={(ev) => ev.preventDefault()}
           />
 
           <div className={styles.icon}>
@@ -222,8 +223,8 @@ class DatePicker extends Component {
           </div>
         </div>
 
-        {(helpText && !errored) && (<FormHelpText text={helpText} />)}
-        {(errored) && (<FormErrorMessage text={meta.error} />)}
+        {helpText && !errored && <FormHelpText text={helpText} />}
+        {errored && <FormErrorMessage text={meta.error} />}
       </div>
     )
   }
@@ -251,7 +252,7 @@ DatePicker.propTypes = {
   readOnly: PropTypes.bool,
   helpText: PropTypes.string,
   formatter: PropTypes.func,
-  theme: PropTypes.oneOf(['', 'primary', 'secondary', 'success', 'warning', 'error', 'legacy', 'dark', 'tertiary', 'info']),
+  theme: PropTypes.oneOf(['', 'primary', 'secondary', 'success', 'warning', 'error', 'legacy', 'dark', 'tertiary', 'info',]),
   className: PropTypes.string,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,

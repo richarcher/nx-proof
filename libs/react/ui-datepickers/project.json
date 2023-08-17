@@ -1,7 +1,7 @@
 {
-  "name": "ui-datepickers",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/ui-datepickers/src",
+  "name": "react-ui-datepickers",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/react/ui-datepickers/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -9,23 +9,23 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/ui-datepickers/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/react/ui-datepickers/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/ui-datepickers",
-        "tsConfig": "libs/ui-datepickers/tsconfig.lib.json",
-        "project": "libs/ui-datepickers/package.json",
-        "entryFile": "libs/ui-datepickers/src/index.js",
+        "outputPath": "dist/libs/react/ui-datepickers",
+        "tsConfig": "libs/react/ui-datepickers/tsconfig.lib.json",
+        "project": "libs/react/ui-datepickers/package.json",
+        "entryFile": "libs/react/ui-datepickers/src/index.js",
         "external": ["react", "react-dom", "react/jsx-runtime"],
         "rollupConfig": "@nx/react/plugins/bundle-rollup",
         "compiler": "babel",
         "assets": [
           {
-            "glob": "libs/ui-datepickers/README.md",
+            "glob": "libs/react/ui-datepickers/README.md",
             "input": ".",
             "output": "."
           }
@@ -36,7 +36,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/ui-datepickers/jest.config.js",
+        "jestConfig": "libs/react/ui-datepickers/jest.config.js",
         "passWithNoTests": true
       },
       "configurations": {
@@ -50,7 +50,7 @@
       "executor": "@nx/storybook:storybook",
       "options": {
         "port": 4400,
-        "configDir": "libs/ui-datepickers/.storybook"
+        "configDir": "libs/react/ui-datepickers/.storybook"
       },
       "configurations": {
         "ci": {
@@ -63,7 +63,7 @@
       "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/ui-datepickers",
-        "configDir": "libs/ui-datepickers/.storybook"
+        "configDir": "libs/react/ui-datepickers/.storybook"
       },
       "configurations": {
         "ci": {
@@ -74,18 +74,18 @@
     "test-storybook": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "test-storybook -c libs/ui-datepickers/.storybook --url=http://localhost:4400"
+        "command": "test-storybook -c libs/react/ui-datepickers/.storybook --url=http://localhost:4400"
       }
     },
     "static-storybook": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "ui-datepickers:build-storybook",
+        "buildTarget": "react-ui-datepickers:build-storybook",
         "staticFilePath": "dist/storybook/ui-datepickers"
       },
       "configurations": {
         "ci": {
-          "buildTarget": "ui-datepickers:build-storybook:ci"
+          "buildTarget": "react-ui-datepickers:build-storybook:ci"
         }
       }
     }
