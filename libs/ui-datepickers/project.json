@@ -45,6 +45,49 @@
           "codeCoverage": true
         }
       }
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/ui-datepickers/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ui-datepickers",
+        "configDir": "libs/ui-datepickers/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/ui-datepickers/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "ui-datepickers:build-storybook",
+        "staticFilePath": "dist/storybook/ui-datepickers"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "ui-datepickers:build-storybook:ci"
+        }
+      }
     }
   }
 }
