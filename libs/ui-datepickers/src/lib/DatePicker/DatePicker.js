@@ -2,22 +2,23 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { cx } from '@emotion/css'
 
-// import addDays from 'date-fns/add_days'
-// import addMonths from 'date-fns/add_months'
-// import addWeeks from 'date-fns/add_weeks'
-// import differenceInCalendarWeeks from 'date-fns/difference_in_calendar_weeks'
-// import endOfDay from 'date-fns/end_of_day'
-// import format from 'date-fns/format'
-// import getDay from 'date-fns/get_day'
-// import isAfter from 'date-fns/is_after'
-// import isBefore from 'date-fns/is_before'
-// import isEqual from 'date-fns/is_equal'
-// import isSameMonth from 'date-fns/is_same_month'
+import addDays from 'date-fns/add_days'
+import addMonths from 'date-fns/add_months'
+import addWeeks from 'date-fns/add_weeks'
+import differenceInCalendarWeeks from 'date-fns/difference_in_calendar_weeks'
+import endOfDay from 'date-fns/end_of_day'
+import format from 'date-fns/format'
+import getDay from 'date-fns/get_day'
+import isAfter from 'date-fns/is_after'
+import isBefore from 'date-fns/is_before'
+import isEqual from 'date-fns/is_equal'
+import isSameMonth from 'date-fns/is_same_month'
 // import isValid from 'date-fns/is_valid'
-// import startOfDay from 'date-fns/start_of_day'
-// import startOfMonth from 'date-fns/start_of_month'
+import startOfDay from 'date-fns/start_of_day'
+import startOfMonth from 'date-fns/start_of_month'
 
-// import { colors } from '../../themes'
+import { colors } from '@offerzen/design-tokens'
+import { Button, FormHelpText, FormErrorMessage } from '../../../../ui-core/src'
 // import Button from '../Button'
 // import FormErrorMessage from '../FormErrorMessage'
 // import FormHelpText from '../FormHelpText'
@@ -29,7 +30,6 @@ import styles, { wrapperTheme, labelTheme, dayTheme } from './styles'
 // import calendar from '../Icon/icons/calendar'
 
 class DatePicker extends Component {
-  // eslint-disable-next-line react/state-in-constructor
   state = {
     open: false,
     activeMonth: null,
@@ -96,87 +96,95 @@ class DatePicker extends Component {
     // const formatter = props.formatter || format
     // const formattedValue = isValid(new Date(value)) ? formatter(value, 'D MMMM YYYY') : ''
 
-    // const firstOfMonth = startOfMonth(activeMonth)
-    // const prevMonthDays = getDay(firstOfMonth)
-    // const firstDayInCalendar = addDays(firstOfMonth, -prevMonthDays)
+    const firstOfMonth = startOfMonth(activeMonth)
+    const prevMonthDays = getDay(firstOfMonth)
+    const firstDayInCalendar = addDays(firstOfMonth, -prevMonthDays)
 
-    // const weeks = new Array(differenceInCalendarWeeks(addMonths(firstOfMonth, 1), firstOfMonth) + 1).fill(new Array(7).fill(0))
-    // const calendarWeeks = weeks.map((week, weekIndex) => week.map((_, dayInWeek) => {
-    //   const date = addWeeks(addDays(firstDayInCalendar, dayInWeek), weekIndex)
-    //   const beforeMinDate = props.minDate ? isBefore(startOfDay(date), startOfDay(props.minDate)) : false
-    //   const afterMaxDate = props.maxDate ? isAfter(endOfDay(date), endOfDay(props.maxDate)) : false
+    const weeks = new Array(differenceInCalendarWeeks(addMonths(firstOfMonth, 1), firstOfMonth) + 1).fill(new Array(7).fill(0))
+    const calendarWeeks = weeks.map((week, weekIndex) => week.map((_, dayInWeek) => {
+      const date = addWeeks(addDays(firstDayInCalendar, dayInWeek), weekIndex)
+      const beforeMinDate = props.minDate ? isBefore(startOfDay(date), startOfDay(props.minDate)) : false
+      const afterMaxDate = props.maxDate ? isAfter(endOfDay(date), endOfDay(props.maxDate)) : false
 
-    //   return {
-    //     day: format(date, 'D'),
-    //     selected: isEqual(startOfDay(activeDate), startOfDay(date)) && !!value,
-    //     inMonth: isSameMonth(activeMonth, date),
-    //     disabled: beforeMinDate || afterMaxDate,
-    //     ...(!beforeMinDate && !afterMaxDate) && {
-    //       onClick: () => {
-    //         this.selectDate(date)
-    //       },
-    //     },
-    //   }
-    // }))
+      return {
+        day: format(date, 'D'),
+        selected: isEqual(startOfDay(activeDate), startOfDay(date)) && !!value,
+        inMonth: isSameMonth(activeMonth, date),
+        disabled: beforeMinDate || afterMaxDate,
+        ...(!beforeMinDate && !afterMaxDate) && {
+          onClick: () => {
+            this.selectDate(date)
+          },
+        },
+      }
+    }))
 
     return (
       <div className={cx(styles.wrapper, className, wrapperTheme(theme), errored && styles.wrapperError)}>
         {/* Render body first so the "input" appears on top */}
-        {/* <If condition={open}>
-          <div className={styles.body} tabIndex="-1">
-            <div className={styles.calendarHeader}>
-              <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, -1) })}>
-                <Icon icon={chevronLeft} size={20} color={colors.grayChateau} />
+        {open && (
+          <>
+            <div className={styles.body} tabIndex="-1">
+              <div className={styles.calendarHeader}>
+                <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, -1) })}>
+                  {/* <Icon icon={chevronLeft} size={20} color={colors.grayChateau} /> */}
+                  ◀
+                </div>
+
+                <strong>{format(activeMonth, 'MMMM YYYY')}</strong>
+
+                <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, 1) })}>
+                  {/* <Icon icon={chevronRight} size={20} color={colors.grayChateau} /> */}
+                  ▶
+                </div>
               </div>
 
-              <strong>{format(activeMonth, 'MMMM YYYY')}</strong>
-
-              <div className={styles.calendarNavigation} onClick={() => this.setState({ activeMonth: addMonths(activeMonth, 1) })}>
-                <Icon icon={chevronRight} size={20} color={colors.grayChateau} />
-              </div>
-            </div>
-
-            <table className={styles.calendar}>
-              <thead>
-                <tr>
-                  <th>Su</th>
-                  <th>Mo</th>
-                  <th>Tu</th>
-                  <th>We</th>
-                  <th>Th</th>
-                  <th>Fr</th>
-                  <th>Sa</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <For each="row" index="rowIndex" of={calendarWeeks}>
-                  <tr key={rowIndex}>
-                    <For each="cell" index="cellIndex" of={row}>
-                      <td key={cellIndex} className={cx(styles.day, cell.disabled && styles.dayDisabled, !cell.inMonth && styles.dayOut)}>
-                        <span
-                          className={cx(styles.dayWrapper,
-                            !cell.inMonth && styles.dayWrapperOut,
-                            cell.selected && dayTheme(theme, cell.inMonth))}
-                          onClick={cell.onClick}
-                        >
-                          {cell.day}
-                        </span>
-                      </td>
-                    </For>
+              <table className={styles.calendar}>
+                <thead>
+                  <tr>
+                    <th>Su</th>
+                    <th>Mo</th>
+                    <th>Tu</th>
+                    <th>We</th>
+                    <th>Th</th>
+                    <th>Fr</th>
+                    <th>Sa</th>
                   </tr>
-                </For>
-              </tbody>
-            </table>
+                </thead>
 
-            <div className={styles.footer}>
-              <Button theme={theme} size="small" label="Today" variant="outlined" onClick={() => this.selectDate(new Date())} />
-              <Button theme={theme} size="small" label="Done" onClick={() => this.closePicker()} />
+                <tbody>
+                  {calendarWeeks.map((row, rowIndex) => {
+                    return (
+                      <tr key={rowIndex}>
+                        {row.map((cell, cellIndex) => {
+                          return (
+                            <td key={cellIndex} className={cx(styles.day, cell.disabled && styles.dayDisabled, !cell.inMonth && styles.dayOut)}>
+                              <span
+                                className={cx(styles.dayWrapper,
+                                  !cell.inMonth && styles.dayWrapperOut,
+                                  cell.selected && dayTheme(theme, cell.inMonth))}
+                                onClick={cell.onClick}
+                              >
+                                {cell.day}
+                              </span>
+                            </td>
+                          )
+                        })}
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+
+              <div className={styles.footer}>
+                <Button theme={theme} size="small" label="Today" variant="outlined" onClick={() => this.selectDate(new Date())} />
+                <Button theme={theme} size="small" label="Done" onClick={() => this.closePicker()} />
+              </div>
             </div>
-          </div>
 
-          <div className={styles.overlay} onClick={this.closePicker} />
-        </If> */}
+            <div className={styles.overlay} onClick={this.closePicker} />
+          </>
+        )}
 
         <div
           className={cx(styles.label, labelTheme(theme), open && styles.openLabel, errored && styles.errorLabel)}
@@ -210,16 +218,12 @@ class DatePicker extends Component {
 
           <div className={styles.icon}>
             {/* <Icon icon={calendar} size={18} color={errored ? colors.mandy : colors.geyser} /> */}
+            📅
           </div>
         </div>
 
-        {/* <If condition={helpText && !errored}>
-          <FormHelpText text={helpText} />
-        </If> */}
-
-        {/* <If condition={errored}>
-          <FormErrorMessage text={meta.error} />
-        </If> */}
+        {(helpText && !errored) && (<FormHelpText text={helpText} />)}
+        {(errored) && (<FormErrorMessage text={meta.error} />)}
       </div>
     )
   }
