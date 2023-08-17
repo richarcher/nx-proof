@@ -18,7 +18,7 @@ import startOfDay from 'date-fns/start_of_day'
 import startOfMonth from 'date-fns/start_of_month'
 
 import { colors } from '@offerzen/design-tokens'
-import { Button, FormHelpText, FormErrorMessage } from '../../../../ui-core/src'
+import { Button, FormHelpText, FormErrorMessage } from '@offerzen/ui-core'
 // import Button from '../Button'
 // import FormErrorMessage from '../FormErrorMessage'
 // import FormHelpText from '../FormHelpText'
