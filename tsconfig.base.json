@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@offerzen/core/design-tokens": ["libs/core/design-tokens/src/index.ts"],
       "@offerzen/react/design-tokens": [
         "libs/react/design-tokens/src/index.js"
       ],
