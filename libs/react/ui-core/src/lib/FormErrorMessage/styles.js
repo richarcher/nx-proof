@@ -5,7 +5,7 @@ import {
   fontWeight,
   fontFamily,
   colors,
-} from '@offerzen/react/design-tokens';
+} from '@offerzen/core-design-tokens';
 
 const styles = {
   wrapper: css({

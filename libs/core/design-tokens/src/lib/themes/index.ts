@@ -1,6 +1,6 @@
 import colors from './colors';
 
-const getThemeColors = (theme) => {
+const getThemeColors = (theme: string) => {
   switch (theme) {
     case 'secondary':
       return {
@@ -88,7 +88,7 @@ export default getThemeColors;
 
 export { colors };
 
-export const getSkeletonColors = (theme) => {
+export const getSkeletonColors = (theme: string) => {
   switch (theme) {
     case 'dark':
       return colors.geyser;

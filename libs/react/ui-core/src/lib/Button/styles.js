@@ -9,7 +9,7 @@ import {
   getThemeColors,
   colors,
   hexToRgba,
-} from '@offerzen/react/design-tokens';
+} from '@offerzen/core-design-tokens';
 
 const styles = {
   button: css({

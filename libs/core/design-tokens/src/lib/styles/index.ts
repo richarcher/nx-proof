@@ -1,11 +1,11 @@
-export const borderRadius = {
+export const borderRadius: { [key: string]: number } = {
   extraLarge: 100,
   medium: 4,
   default: 3,
   small: 2,
 };
 
-export const spacing = {
+export const spacing: { [key: string]: number } = {
   extraLarge: 40,
   large: 24,
   medium: 18,
@@ -14,7 +14,7 @@ export const spacing = {
   extraSmall: 3,
 };
 
-export const fontSize = {
+export const fontSize: { [key: string]: number } = {
   extraLarge: 30,
   large: 24,
   medium: 18,
@@ -23,7 +23,7 @@ export const fontSize = {
   extraSmall: 12,
 };
 
-export const fontWeight = {
+export const fontWeight: { [key: string]: number } = {
   thin: 100,
   extraLight: 200,
   light: 300,
@@ -35,16 +35,16 @@ export const fontWeight = {
   black: 900,
 };
 
-export const fontFamily = {
+export const fontFamily: { [key: string]: string } = {
   heading: '"proxima-nova", Helvetica, Arial, sans-serif',
   body: '"proxima-nova", Helvetica, Arial, sans-serif',
 };
 
-export const lineHeight = {
+export const lineHeight: { [key: string]: number } = {
   default: 1.2,
 };
 
-export const zIndex = {
+export const zIndex: { [key: string]: number } = {
   level1: 100,
   level2: 200,
   level3: 300,
@@ -57,13 +57,13 @@ export const zIndex = {
   level10: 1000,
 };
 
-export const breakpoint = {
+export const breakpoint: { [key: string]: number } = {
   phone: 640,
   // Need to use 821 because of rails. Change back to tablet: 800 when we remove sass
   tablet: 821,
   desktop: 1128,
 };
 
-export const size = {
+export const size: { [key: string]: number } = {
   navbar: 50,
 };

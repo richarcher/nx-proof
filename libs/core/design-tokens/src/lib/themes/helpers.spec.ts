@@ -11,7 +11,7 @@ describe('helpers', () => {
     });
 
     it('takes an optional opacity param', () => {
-      expect(hexToRgba('#000000', '0.5')).toBe('rgba(0, 0, 0, 0.5)');
+      expect(hexToRgba('#000000', 0.5)).toBe('rgba(0, 0, 0, 0.5)');
     });
   });
 });

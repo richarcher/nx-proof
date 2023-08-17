@@ -17,12 +17,12 @@ import isSameMonth from 'date-fns/is_same_month';
 import startOfDay from 'date-fns/start_of_day';
 import startOfMonth from 'date-fns/start_of_month';
 
-import { colors } from '@offerzen/react/design-tokens';
+import { colors } from '@offerzen/core-design-tokens';
 import {
   Button,
   FormHelpText,
   FormErrorMessage,
-} from '@offerzen/react/ui-core';
+} from '@offerzen/react-ui-core';
 // import Button from '../Button'
 // import FormErrorMessage from '../FormErrorMessage'
 // import FormHelpText from '../FormHelpText'
@@ -137,10 +137,10 @@ class DatePicker extends Component {
           disabled: beforeMinDate || afterMaxDate,
           ...(!beforeMinDate &&
             !afterMaxDate && {
-              onClick: () => {
-                this.selectDate(date);
-              },
-            }),
+            onClick: () => {
+              this.selectDate(date);
+            },
+          }),
         };
       })
     );

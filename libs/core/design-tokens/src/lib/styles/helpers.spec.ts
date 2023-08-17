@@ -2,8 +2,8 @@ import { mediaQueryHelper, shorthandHelper } from './helpers';
 
 describe('helpers', () => {
   describe('.mediaQueryHelper', () => {
-    let breakpoint;
-    let direction;
+    let breakpoint: number;
+    let direction: string;
 
     beforeEach(() => {
       breakpoint = 821;
