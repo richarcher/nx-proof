@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@offerzen/core-design-tokens": ["libs/core/design-tokens/src/index.ts"],
+      "@offerzen/marketplace-common": ["libs/marketplace/common/src/index.js"],
       "@offerzen/react-design-tokens": [
         "libs/react/design-tokens/src/index.js"
       ],
