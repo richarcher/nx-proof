@@ -51,15 +51,15 @@ export const DisabledButton = {
 
 Primary.play = async ({ args, canvasElement, step }) => {
   const canvas = within(canvasElement);
-  expect(canvas.getByText(/Click me!/gi)).toBeTruthy();
+  await expect(canvas.getByText(/Click me!/gi)).toBeTruthy();
 
   await step('Click button', async () => {
     await userEvent.click(canvas.getByRole('button'));
-    expect(args.onClick).toHaveBeenCalled();
+    await expect(args.onClick).toHaveBeenCalled();
   });
 };
 
 DisabledButton.play = async ({ args, canvasElement, step }) => {
   const canvas = within(canvasElement);
-  expect(canvas.getByText(/Click me!/gi)).toHaveAttribute('disabled');
+  await expect(canvas.getByText(/Click me!/gi)).toHaveAttribute('disabled');
 };

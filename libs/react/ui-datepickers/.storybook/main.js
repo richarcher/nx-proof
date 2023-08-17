@@ -1,14 +1,20 @@
 const config = {
   stories: ['../src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@nx/react/plugins/storybook',
   ],
+
   framework: {
     name: '@storybook/react-webpack5',
     options: {},
   },
+
+  docs: {
+    autodocs: true
+  }
 };
 
 export default config;

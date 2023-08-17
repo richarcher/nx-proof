@@ -20,11 +20,11 @@ export const Demo = {
   args: {},
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByRole('textbox')).toBeInTheDocument();
+    await expect(canvas.getByRole('textbox')).toBeInTheDocument();
     await step('Open Datepicker', async () => {
       await userEvent.click(canvas.getByRole('textbox'));
-      expect(canvas.getByRole('table')).toBeInTheDocument()
-      expect(canvas.getByRole('row', { name: 'Su Mo Tu We Th Fr Sa' })).toBeInTheDocument()
+      await expect(canvas.getByRole('table')).toBeInTheDocument()
+      await expect(canvas.getByRole('row', { name: 'Su Mo Tu We Th Fr Sa' })).toBeInTheDocument()
       await sleep(1000);
     });
     await step('navigate to next month', async () => {
