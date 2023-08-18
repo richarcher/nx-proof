@@ -9,7 +9,7 @@ export const spacing: { [key: string]: number } = {
   extraLarge: 40,
   large: 24,
   medium: 18,
-  default: 12,
+  default: 16,
   small: 6,
   extraSmall: 3,
 };
